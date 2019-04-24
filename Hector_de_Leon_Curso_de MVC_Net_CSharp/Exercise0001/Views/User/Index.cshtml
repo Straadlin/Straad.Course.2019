@@ -1,0 +1,32 @@
+﻿@model List<Exercise0001.Models.TablesViewModels.UserTableViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Name</th>
+            </tr>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.UserName
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
