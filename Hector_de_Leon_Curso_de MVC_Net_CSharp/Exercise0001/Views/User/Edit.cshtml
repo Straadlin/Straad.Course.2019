@@ -1,0 +1,41 @@
+﻿@model Exercise0001.Models.ViewModels.EditUserViewModel
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.HiddenFor(d => d.Id)
+
+            // Avoid receive another request. It is for security.
+            @Html.AntiForgeryToken()
+
+            //error throwed by a data annotation
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.UserName);
+            @Html.TextBoxFor(d => d.UserName, new { @class = "form-control" })
+            @Html.ValidationMessage("Username", new { @class = "text-danger" })<br />
+
+            @Html.LabelFor(d => d.Password)
+            @Html.PasswordFor(d => d.Password, new { @class = "form-control" })
+            @Html.ValidationMessage("Password", new { @class = "text-danger" })<br />
+
+            @Html.LabelFor(d => d.ConfirmPassword)
+            @Html.PasswordFor(d => d.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessage("ConfirmPassword", new { @class = "text-danger" })<br />
+
+            @Html.LabelFor(d => d.Name);
+            @Html.TextBoxFor(d => d.Name, new { @class = "form-control" })
+            @Html.ValidationMessage("Name", new { @class = "text-danger" })<br />
+
+            <div style="text-align:right;">
+                <input type="submit" class="btn btn-success" value="Save" />
+            </div>
+        }
+    </div>
+</div>

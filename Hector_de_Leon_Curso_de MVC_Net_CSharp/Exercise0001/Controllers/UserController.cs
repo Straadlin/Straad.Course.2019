@@ -20,6 +20,7 @@
             {
                 lst = (from d in dbContext.users
                        join s in dbContext.cstates on d.idState equals s.id
+                       where s.name.Equals("Active")
                        select new UserTableViewModel
                        {
                            Id = d.id,
@@ -64,6 +65,65 @@
             }
 
             return Redirect(Url.Content("~/User/"));
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            EditUserViewModel model = new EditUserViewModel();
+
+            using (var dbContext = new Example001Entities())
+            {
+                var oUser = dbContext.users.Find(id);
+
+                model.Id = oUser.id;
+                model.Name = oUser.name;
+                model.UserName = oUser.username;
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            using (var dbContext = new Example001Entities())
+            {
+                var oUser = dbContext.users.Find(model.Id);
+                oUser.name = model.Name;
+                oUser.username = model.UserName;
+
+                if (model.Password != null && model.Password.Trim() != "")
+                {
+                    oUser.password = model.Password;
+                }
+
+                dbContext.Entry(oUser).State = System.Data.Entity.EntityState.Modified;
+                dbContext.SaveChanges();
+            }
+
+            return Redirect(Url.Content("~/User/"));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            using (var dbContext = new Example001Entities())
+            {
+                var oUser = dbContext.users.Find(id);
+                var oState = dbContext.cstates.Where(s => s.name.Equals("Deleted")).FirstOrDefault();
+
+                oUser.cstate = oState;
+                dbContext.Entry(oUser).State = System.Data.Entity.EntityState.Modified;
+                dbContext.SaveChanges();
+            }
+
+            return Content("1");
         }
     }
 }
