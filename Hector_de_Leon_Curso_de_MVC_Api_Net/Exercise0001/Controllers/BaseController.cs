@@ -10,6 +10,8 @@
 
     public class BaseController : ApiController
     {
+        public string error = string.Empty;
+
         public bool Verify(string token)
         {
             using (var dbContext = new Example002Entities())

@@ -195,6 +195,7 @@
       <DependentUpon>ModelContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WS\AccessViewModel.cs" />
+    <Compile Include="Models\WS\AnimalViewModel.cs" />
     <Compile Include="Models\WS\ListAnimalsViewModel.cs" />
     <Compile Include="Models\WS\Reply.cs" />
     <Compile Include="Models\WS\SecurityViewModel.cs" />

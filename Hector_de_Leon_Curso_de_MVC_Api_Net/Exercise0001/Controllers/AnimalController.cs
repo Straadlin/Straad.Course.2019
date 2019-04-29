@@ -29,6 +29,7 @@
                 {
                     oReply.data = (from a in dbContext.Animals
                                    join s in dbContext.States on a.IdState equals s.Id
+                                   where s.Name.Equals("Active")
                                    select new ListAnimalsViewModel
                                    {
                                        Name = a.Name,
@@ -45,5 +46,162 @@
 
             return oReply;
         }
+
+        [HttpPost]
+        public Reply Add([FromBody]AnimalViewModel model)
+        {
+            var oReply = new Reply();
+            oReply.result = 0;
+
+            if (!Verify(model.token))
+            {
+                oReply.message = "Not authorized";
+                return oReply;
+            }
+
+            if (!Validate(model))
+            {
+                oReply.message = error;
+                return oReply;
+            }
+
+            try
+            {
+                using (var dbContext = new Example002Entities())
+                {
+                    var oAnimal = new Animal();
+                    oAnimal.IdState = 1;
+                    oAnimal.Name = model.Name;
+                    oAnimal.Foots = model.Foots;
+
+                    dbContext.Animals.Add(oAnimal);
+                    dbContext.SaveChanges();
+
+                    oReply.result = 1;
+
+                    oReply.data = (from a in dbContext.Animals
+                                   join s in dbContext.States on a.IdState equals s.Id
+                                   where s.Name.Equals("Active")
+                                   select new ListAnimalsViewModel
+                                   {
+                                       Name = a.Name,
+                                       Foots = a.Foots
+                                   }).ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                oReply.message = string.Format("There was an error. {0}", exception);
+            }
+
+            return oReply;
+        }
+
+        [HttpPost]
+        public Reply Edit([FromBody]AnimalViewModel model)
+        {
+            var oReply = new Reply();
+            oReply.result = 0;
+
+            if (!Verify(model.token))
+            {
+                oReply.message = "Not authorized";
+                return oReply;
+            }
+
+            if (!Validate(model))
+            {
+                oReply.message = error;
+                return oReply;
+            }
+
+            try
+            {
+                using (var dbContext = new Example002Entities())
+                {
+                    var oAnimal = dbContext.Animals.Find(model.Id);
+
+                    oAnimal.Name = model.Name;
+                    oAnimal.Foots = model.Foots;
+
+                    dbContext.Entry(oAnimal).State = System.Data.Entity.EntityState.Modified;
+                    dbContext.SaveChanges();
+
+                    oReply.result = 1;
+
+                    oReply.data = (from a in dbContext.Animals
+                                   join s in dbContext.States on a.IdState equals s.Id
+                                   where s.Name.Equals("Active")
+                                   select new ListAnimalsViewModel
+                                   {
+                                       Name = a.Name,
+                                       Foots = a.Foots
+                                   }).ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                oReply.message = string.Format("There was an error. {0}", exception);
+            }
+
+            return oReply;
+        }
+
+        [HttpPost]
+        public Reply Delete([FromBody]AnimalViewModel model)
+        {
+            var oReply = new Reply();
+            oReply.result = 0;
+
+            if (!Verify(model.token))
+            {
+                oReply.message = "Not authorized";
+                return oReply;
+            }
+
+            try
+            {
+                using (var dbContext = new Example002Entities())
+                {
+                    var oAnimal = dbContext.Animals.Find(model.Id);
+                    oAnimal.IdState = 2;
+
+                    dbContext.Entry(oAnimal).State = System.Data.Entity.EntityState.Modified;
+                    dbContext.SaveChanges();
+
+                    oReply.result = 1;
+
+                    oReply.data = (from a in dbContext.Animals
+                                   join s in dbContext.States on a.IdState equals s.Id
+                                   where s.Name.Equals("Active")
+                                   select new ListAnimalsViewModel
+                                   {
+                                       Name = a.Name,
+                                       Foots = a.Foots
+                                   }).ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                oReply.message = string.Format("There was an error. {0}", exception);
+            }
+
+            return oReply;
+        }
+
+        #region Helpers
+
+        private bool Validate(AnimalViewModel model)
+        {
+            if (string.IsNullOrEmpty(model.Name))
+            {
+                error = "Name is neccesary.";
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion Helpers
     }
 }
