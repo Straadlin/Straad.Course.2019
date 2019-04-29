@@ -25,6 +25,7 @@ namespace Exercise0001.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Animal> Animals { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
