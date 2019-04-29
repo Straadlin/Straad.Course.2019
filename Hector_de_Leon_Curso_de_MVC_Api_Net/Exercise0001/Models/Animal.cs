@@ -18,6 +18,7 @@ namespace Exercise0001.Models
         public string Name { get; set; }
         public int Foots { get; set; }
         public int IdState { get; set; }
+        public byte[] picture { get; set; }
     
         public virtual State State { get; set; }
     }

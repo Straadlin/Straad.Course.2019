@@ -13,6 +13,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Foots" Type="int" Nullable="false" />
           <Property Name="IdState" Type="int" Nullable="false" />
+          <Property Name="picture" Type="image" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -82,6 +83,7 @@
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Foots" Type="Int32" Nullable="false" />
           <Property Name="IdState" Type="Int32" Nullable="false" />
+          <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="State" Relationship="Self.FK_Animals_State" FromRole="Animals" ToRole="State" />
         </EntityType>
         <EntityType Name="State">
@@ -155,6 +157,7 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Foots" ColumnName="Foots" />
                 <ScalarProperty Name="IdState" ColumnName="IdState" />
+                <ScalarProperty Name="picture" ColumnName="picture" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
