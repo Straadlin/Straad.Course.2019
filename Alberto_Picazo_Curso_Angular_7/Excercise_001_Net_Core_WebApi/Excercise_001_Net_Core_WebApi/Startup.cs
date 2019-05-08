@@ -49,6 +49,13 @@ namespace Excercise_001_Net_Core_WebApi
                 config.SwaggerEndpoint("/swagger/v1/swagger.json", "Angular API");
             });
 
+            app.UseCors(options =>
+            {
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+                options.AllowAnyOrigin();
+            });
+
             app.UseMvc();
         }
     }
