@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Excercise_001_Net_Core_WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Excercise_001_Net_Core_WebApi.Controllers
@@ -20,6 +21,12 @@ namespace Excercise_001_Net_Core_WebApi.Controllers
                 LastName = "Estrada",
                 Email = "alfredo.estrada@straad.mx"
             });
+        }
+
+        [HttpPost("adduser")]
+        public ActionResult AddUser([FromBody] UserViewModel model)
+        {
+            return Ok();
         }
     }
 }

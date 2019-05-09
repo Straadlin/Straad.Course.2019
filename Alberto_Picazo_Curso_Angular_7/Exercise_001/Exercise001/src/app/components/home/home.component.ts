@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { User } from '../../models/UserModel';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService) {
 
-    this.userService.getUserName();
+    const user = new User();
+    user.Email = 'alfredo.estrada@straad.mx';
+    user.FirstName = 'Alfredo';
+    user.LastName = 'Estrada';
+
+    this.userService.addUser(user);
   }
 
   ngOnInit() {
