@@ -13,3 +13,15 @@
       </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+  <div *ngIf="flag">
+    <h1>FLAG IS TRUE</h1>
+  </div>
+
+  <div>
+    <ul>
+        <li *ngFor="let user of users; let indexPosition = index">
+            {{user.firstName}}
+        </li>
+    </ul>
+  </div>

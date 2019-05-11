@@ -11,9 +11,11 @@ import { User } from 'src/app/Models/UserModel';
 export class HomeComponent implements OnInit {
 
   form: FormGroup;
+  flag = false;
+  users: any[] = [];
 
   constructor(private userService: UserService, private fb: FormBuilder) {
-    
+
   }
 
   ngOnInit() {
@@ -32,5 +34,11 @@ export class HomeComponent implements OnInit {
     user.FirstName = formValue.FirstName;
     user.LastName = formValue.LastName;
     this.userService.addUser(user);
+    this.flag = !this.flag;
+    this.userService.getUsers()
+      .subscribe((resp: any) => {
+        this.users = resp;
+        // console.log(resp);
+      });
   }
 }

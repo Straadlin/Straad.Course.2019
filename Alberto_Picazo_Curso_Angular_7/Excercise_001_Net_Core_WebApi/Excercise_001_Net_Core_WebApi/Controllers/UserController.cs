@@ -23,6 +23,35 @@ namespace Excercise_001_Net_Core_WebApi.Controllers
             });
         }
 
+        [HttpGet("users")]
+        public ActionResult GetUsers()
+        {
+            var listUsers = new List<UserViewModel>();
+
+            listUsers.Add(new UserViewModel
+            {
+                FirstName = "Alfredo",
+                LastName = "Estrada",
+                Email = "alfredo.estrada@straad.mx"
+            });
+
+            listUsers.Add(new UserViewModel
+            {
+                FirstName = "Amanda",
+                LastName = "Gutiérrez",
+                Email = "amanda@gmail.com"
+            });
+
+            listUsers.Add(new UserViewModel
+            {
+                FirstName = "Carolina",
+                LastName = "Santos",
+                Email = "carolina@gmail.com"
+            });
+
+            return Ok(listUsers);
+        }
+
         [HttpPost("adduser")]
         public ActionResult AddUser([FromBody] UserViewModel model)
         {

@@ -18,6 +18,11 @@ export class UserService {
     });
   }
 
+  getUsers() {
+
+    return this.http.get('http://localhost:53368/api/User/users');
+  }
+
   addUser(user: User) {
 
     const data = new User();
