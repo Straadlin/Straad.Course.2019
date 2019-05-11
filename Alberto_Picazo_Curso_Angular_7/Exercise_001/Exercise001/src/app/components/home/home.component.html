@@ -11,6 +11,9 @@
         <label for="LastName">Last name</label>
         <input type="text" class="form-control" formControlName="LastName" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter last name">
       </div>
+      <div class="form-group">
+        <app-text [FirstName]="'Alfredo'" [LastName]="'Estrada'" [Email]="'alfredo.estrada@straad.mx'"></app-text>
+      </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 

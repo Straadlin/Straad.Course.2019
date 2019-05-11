@@ -9,6 +9,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { AppRoutingModule } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextComponent } from './components/text/text.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     HomeComponent,
     BlogComponent,
-    ShopComponent
+    ShopComponent,
+    TextComponent
   ],
   imports: [
     BrowserModule,
