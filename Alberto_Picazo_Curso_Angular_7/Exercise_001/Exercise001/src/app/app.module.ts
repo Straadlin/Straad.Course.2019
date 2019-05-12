@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextComponent } from './components/text/text.component';
+import { NgbdDatepickerPopup } from './components/datepicker-popup/datepicker-popup.component';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,14 +20,17 @@ import { TextComponent } from './components/text/text.component';
     HomeComponent,
     BlogComponent,
     ShopComponent,
-    TextComponent
+    TextComponent,
+    NgbdDatepickerPopup,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // tslint:disable-next-line: deprecation
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

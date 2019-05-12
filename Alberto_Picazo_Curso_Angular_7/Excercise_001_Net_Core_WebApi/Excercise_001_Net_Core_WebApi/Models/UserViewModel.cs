@@ -23,5 +23,11 @@
             get;
             set;
         }
+
+        public DateTime? Date
+        {
+            get;
+            set;
+        }
     }
 }

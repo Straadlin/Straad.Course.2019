@@ -25,11 +25,7 @@ export class UserService {
 
   addUser(user: User) {
 
-    const data = new User();
-    data.FirstName = user.FirstName;
-    data.LastName = user.LastName;
-    data.Email = user.Email;
-    this.http.post('http://localhost:53368/api/User/adduser', data)
+    this.http.post('http://localhost:53368/api/User/adduser', user)
     .subscribe(resp => {
       console.log(resp);
     });

@@ -14,6 +14,9 @@
       <div class="form-group">
         <app-text [FirstName]="'Alfredo'" [LastName]="'Estrada'" [Email]="'alfredo.estrada@straad.mx'"></app-text>
       </div>
+      <div class="form-group">
+          <ngbd-datepicker-popup [parentForm]="form" [formControlName]="'Date'" [formLabel]="'Date:'"></ngbd-datepicker-popup>
+        </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 

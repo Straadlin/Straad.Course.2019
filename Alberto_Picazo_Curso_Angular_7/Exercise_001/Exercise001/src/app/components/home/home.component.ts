@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit {
     this.form = this.fb.group({
       Email: [''],
       FirstName: [''],
-      LastName: ['']
+      LastName: [''],
+      Date: ['']
     });
   }
 
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit {
     user.Email = formValue.Email;
     user.FirstName = formValue.FirstName;
     user.LastName = formValue.LastName;
+    user.Date = new Date(formValue.Date.year, formValue.Date.month, formValue.Date.day);
     this.userService.addUser(user);
     this.flag = !this.flag;
     this.userService.getUsers()
