@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
       Email: [''],
       FirstName: [''],
       LastName: [''],
-      Date: ['']
+      Date: [''],
+      Telephones: this.fb.array([this.fb.group({Telephone: ['']})])
     });
   }
 
@@ -42,5 +43,22 @@ export class HomeComponent implements OnInit {
         this.users = resp;
         // console.log(resp);
       });
+  }
+
+  get getTelephones() {
+
+    return this.form.get('Telephones') as FormArray;
+  }
+
+  addTelephone() {
+
+    const control = <FormArray>this.form.controls['Telephones'];
+    control.push(this.fb.group({Telephone: []}));
+  }
+
+  removeTelephone(index: number){
+
+    const control = <FormArray>this.form.controls['Telephones'];
+    control.removeAt(index);
   }
 }

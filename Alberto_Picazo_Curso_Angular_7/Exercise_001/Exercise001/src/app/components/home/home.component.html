@@ -15,8 +15,16 @@
         <app-text [FirstName]="'Alfredo'" [LastName]="'Estrada'" [Email]="'alfredo.estrada@straad.mx'"></app-text>
       </div>
       <div class="form-group">
-          <ngbd-datepicker-popup [parentForm]="form" [formControlName]="'Date'" [formLabel]="'Date:'"></ngbd-datepicker-popup>
+          <ngbd-datepicker-popup [parentForm]="form" [formControlName]="'Date'" [formLabel]="'Register:'"></ngbd-datepicker-popup>
+      </div>
+      <div class="form-group">
+        <div formArrayName="Telephones">
+          <div *ngFor="let item of getTelephones.controls; let pointIndex=index" [formGroupName]="pointIndex">
+            <input formControlName="Telephone"/><a class="btn btn-link" (click)="removeTelephone(pointIndex)">Remove</a>
+          </div>
         </div>
+        <a class="btn btn-link" (click)="addTelephone()">Add</a>
+      </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
