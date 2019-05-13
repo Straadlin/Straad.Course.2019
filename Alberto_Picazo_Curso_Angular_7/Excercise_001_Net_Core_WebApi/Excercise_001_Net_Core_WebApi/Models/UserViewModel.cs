@@ -29,5 +29,20 @@
             get;
             set;
         }
+
+        public List<ContentModel> Telephones
+        {
+            get;
+            set;
+        }
+    }
+
+    public class ContentModel
+    {
+        public string Telephone
+        {
+            get;
+            set;
+        }
     }
 }
