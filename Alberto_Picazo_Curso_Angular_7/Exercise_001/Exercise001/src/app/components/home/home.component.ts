@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { User } from 'src/app/Models/UserModel';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
   flag = false;
   users: any[] = [];
 
-  constructor(private userService: UserService, private fb: FormBuilder) {
+  constructor(private userService: UserService, private fb: FormBuilder,
+              private toastr: ToastrService) {
 
   }
 
@@ -29,6 +31,13 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
+    this.toastr.error('Hello world!', 'Toastr ERROR!');
+    this.toastr.warning('Hello world!', 'Toastr Warning!');
+    this.toastr.info('Hello world!', 'Toastr Info!');
+  }
+
   onSubmit(formValue: any) {
 
     const user = new User();
@@ -37,11 +46,15 @@ export class HomeComponent implements OnInit {
     user.LastName = formValue.LastName;
     user.Date = new Date(formValue.Date.year, formValue.Date.month, formValue.Date.day);
     user.Telephones = formValue.Telephones;
+
     this.userService.addUser(user);
+
     this.flag = !this.flag;
+
     this.userService.getUsers()
       .subscribe((resp: any) => {
         this.users = resp;
+        this.showSuccess();
         // console.log(resp);
       });
   }
@@ -57,7 +70,7 @@ export class HomeComponent implements OnInit {
     control.push(this.fb.group({Telephone: []}));
   }
 
-  removeTelephone(index: number){
+  removeTelephone(index: number) {
 
     const control = <FormArray>this.form.controls['Telephones'];
     control.removeAt(index);
