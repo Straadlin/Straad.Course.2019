@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   onSubmit(formValue: any) {
 
-    this.screenService.startLoading();
+    // this.screenService.startLoading();
     const user = new User();
     user.Email = formValue.Email;
     user.FirstName = formValue.FirstName;
@@ -57,10 +57,10 @@ export class HomeComponent implements OnInit {
     this.userService.getUsers()
       .subscribe((resp: any) => {
         this.users = resp;
-        this.screenService.hideLoading();
-        this.showSuccess();
+        // this.screenService.hideLoading();
         // console.log(resp);
       });
+    this.showSuccess();
   }
 
   get getTelephones() {
