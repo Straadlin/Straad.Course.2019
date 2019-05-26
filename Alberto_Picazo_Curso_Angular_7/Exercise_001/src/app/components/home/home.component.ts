@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { User } from 'src/app/Models/UserModel';
 import { ToastrService } from 'ngx-toastr';
+import { LoadingScreenService } from '../../services/loading-screen.service';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +17,14 @@ export class HomeComponent implements OnInit {
   users: any[] = [];
 
   constructor(private userService: UserService, private fb: FormBuilder,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private screenService: LoadingScreenService) {
 
   }
 
   ngOnInit() {
 
+    this.screenService.startLoading();
     this.form = this.fb.group({
       Email: [''],
       FirstName: [''],
