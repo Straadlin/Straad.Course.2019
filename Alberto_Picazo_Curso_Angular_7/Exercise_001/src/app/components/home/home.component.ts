@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.screenService.startLoading();
     this.form = this.fb.group({
       Email: [''],
       FirstName: [''],
@@ -43,6 +42,7 @@ export class HomeComponent implements OnInit {
 
   onSubmit(formValue: any) {
 
+    this.screenService.startLoading();
     const user = new User();
     user.Email = formValue.Email;
     user.FirstName = formValue.FirstName;
@@ -57,6 +57,7 @@ export class HomeComponent implements OnInit {
     this.userService.getUsers()
       .subscribe((resp: any) => {
         this.users = resp;
+        this.screenService.hideLoading();
         this.showSuccess();
         // console.log(resp);
       });
