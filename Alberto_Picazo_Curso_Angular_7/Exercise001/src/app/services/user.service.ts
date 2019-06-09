@@ -36,4 +36,14 @@ export class UserService {
       console.log(resp);
     });
   }
+
+  postImage(img: File) {
+    const formData = new FormData();
+    formData.append('image', img);
+
+    this.http.post(this.apiUrl + 'api/User/image', formData)
+    .subscribe(resp => {
+      console.log(resp);
+    });
+  }
 }

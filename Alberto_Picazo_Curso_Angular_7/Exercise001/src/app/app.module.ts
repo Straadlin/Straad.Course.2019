@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { LoadingScreenInterceptor } from './services/loading-screen-interceptor';
+import { FileDropModule } from 'ngx-file-drop';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { LoadingScreenInterceptor } from './services/loading-screen-interceptor'
     TextComponent,
     NgbdDatepickerPopup,
     LoadingScreenComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { LoadingScreenInterceptor } from './services/loading-screen-interceptor'
     // tslint:disable-next-line: deprecation
     NgbModule.forRoot(),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FileDropModule
   ],
   providers: [
     {

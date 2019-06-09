@@ -1,41 +1,43 @@
 <form [formGroup]="form" (submit)="onSubmit(form.value)">
     <div class="form-group">
-      <label for="Email">Email address</label>
-      <input type="email" class="form-control" formControlName="Email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <label for="Email">Email address</label>
+        <input type="email" class="form-control" formControlName="Email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
     </div>
     <div class="form-group">
         <label for="FirstName">First name</label>
         <input type="text" class="form-control" formControlName="FirstName" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name">
-      </div>
-      <div class="form-group">
+    </div>
+    <div class="form-group">
         <label for="LastName">Last name</label>
         <input type="text" class="form-control" formControlName="LastName" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter last name">
-      </div>
-      <div class="form-group">
+    </div>
+    <div class="form-group">
         <app-text [FirstName]="'Alfredo'" [LastName]="'Estrada'" [Email]="'alfredo.estrada@straad.mx'"></app-text>
-      </div>
-      <div class="form-group">
-          <ngbd-datepicker-popup [parentForm]="form" [formControlName]="'Date'" [formLabel]="'Register:'"></ngbd-datepicker-popup>
-      </div>
-      <div class="form-group">
+    </div>
+    <div class="form-group">
+        <ngbd-datepicker-popup [parentForm]="form" [formControlName]="'Date'" [formLabel]="'Register:'"></ngbd-datepicker-popup>
+    </div>
+    <div class="form-group">
         <div formArrayName="Telephones">
-          <div *ngFor="let item of getTelephones.controls; let pointIndex=index" [formGroupName]="pointIndex">
-            <input formControlName="Telephone"/><a class="btn btn-link" (click)="removeTelephone(pointIndex)">Remove</a>
-          </div>
+            <div *ngFor="let item of getTelephones.controls; let pointIndex=index" [formGroupName]="pointIndex">
+                <input formControlName="Telephone" /><a class="btn btn-link" (click)="removeTelephone(pointIndex)">Remove</a>
+            </div>
         </div>
         <a class="btn btn-link" (click)="addTelephone()">Add</a>
-      </div>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+</form>
 
-  <div *ngIf="flag">
+<div *ngIf="flag">
     <h1>FLAG IS TRUE</h1>
-  </div>
+</div>
 
-  <div>
+<div>
     <ul>
         <li *ngFor="let user of users; let indexPosition = index">
             {{user.firstName}}
         </li>
     </ul>
-  </div>
+</div>
+
+<app-file-upload></app-file-upload>

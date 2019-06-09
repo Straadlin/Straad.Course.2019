@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Excercise_001_Net_Core_WebApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Excercise_001_Net_Core_WebApi.Controllers
@@ -55,6 +57,21 @@ namespace Excercise_001_Net_Core_WebApi.Controllers
         [HttpPost("adduser")]
         public ActionResult AddUser([FromBody] UserViewModel model)
         {
+            return Ok();
+        }
+
+        [HttpPost("image")]
+        public async Task<ActionResult> PostImage(IFormFile image)
+        {
+            var filePath = Path.GetTempFileName();
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(stream);
+            }
+
+            // Do whenever we want.
+
             return Ok();
         }
     }
