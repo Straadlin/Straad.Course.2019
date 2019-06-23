@@ -5,9 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './chat.component.html'
 })
 export class ChatComponent {
-  public name = "Alfredo Estrada"
-
-  public ChangeName() {
-    this.name = "Straad"
-  }
+  public lstMessage: string[] = ["Hello world", "I love Amanda", "I don't wanna cray her."];
 }
