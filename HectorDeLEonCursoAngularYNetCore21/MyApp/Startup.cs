@@ -31,6 +31,7 @@ namespace MyApp
             });
 
             var connection = @"Server=DESKTOP-DELL\STRAAD;DataBase=AngularChat;Trusted_Connection=True;ConnectRetryCount=0;";
+            //var connection = @"Data Source=DESKTOP-DELL\STRAAD;Initial Catalog=AngularChat;Integrated Security=True";
             // This connection will be sended to MyDBContext constructor and then Base constructor.
             services.AddDbContext<MyDBContext>(options => options.UseSqlServer(connection));
         }

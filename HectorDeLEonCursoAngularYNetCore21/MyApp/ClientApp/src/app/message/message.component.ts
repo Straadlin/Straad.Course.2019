@@ -1,9 +1,15 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-message',
+  selector: 'message-app',
   templateUrl: './message.component.html'
 })
 export class MessageComponent {
-  @Input() text: string;
+  @Input() oMessage: Message;
+}
+
+interface Message {
+  Id: number,
+  Name: string,
+  Message: string;
 }
